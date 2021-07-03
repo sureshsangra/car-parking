@@ -1,0 +1,44 @@
+<button type="button" class="btn btn-outline-dark" (click)="open(content)">ADD PARKING SLOT</button>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Parking Slot</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form #form='ngForm' (submit)="onSubmit()">
+            <div class="form-group">
+                <label for="firstname">Parking Slot No</label>
+                <div class="input-group">
+                    <input type="text" name="praking_slot" class="form-control" [(ngModel)]="parkingSlot" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstname">Enter your name</label>
+                <div class="input-group">
+                    <input type="text" name="name" class="form-control" [(ngModel)]="personName" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstname">Parking Catagory</label>
+                <div class="input-group">
+                    <select class="form-select" name="personCatagory" aria-label="Default select example" [(ngModel)]="personCatagory" required>
+                        <option *ngFor="let c of catagoryList" value="{{c}}">{{c}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstname">Select Date and Time</label>
+                <div class="input-group">
+                    <input type="datetime-local" name="date_time" class="form-control" [(ngModel)]="parkingTime" required>
+                </div>
+            </div>
+            <div class="border text-center">
+                <button data-dismiss="modal" class="btn btn-outline-dark" [disabled]="form.invalid">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
